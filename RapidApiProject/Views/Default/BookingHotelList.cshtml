@@ -1,0 +1,23 @@
+﻿@model List<BookingListViewModel.Hotel>
+@{
+    ViewData["Title"] = "BookingHotelList";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+<h1>BookingHotelList</h1>
+
+<table class="table table-bordered">
+    <tr>
+
+        <th>Otel Adi</th>
+        <th>Resim</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.property.name</td>
+            <td>@item.property.photoUrls </td>
+
+        </tr>
+    }
+</table>
