@@ -11,7 +11,8 @@
 
         <th>Otel Adi</th>
         <th>Resim</th>
-        <th>Tarih</th>
+        <th>Giriş Tarih</th>
+       
     </tr>
     @foreach (var item in Model)
     {
@@ -19,7 +20,6 @@
             <td>@item.property.name</td>
             <td><img src="@item.property.photoUrls" /></td>
             <td>@item.property.checkinDate </td>
-
 
         </tr>
     }
