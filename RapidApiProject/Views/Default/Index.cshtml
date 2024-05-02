@@ -1,4 +1,4 @@
-﻿
+﻿@model List<BookingListViewModel.Hotel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UILayout.cshtml";
@@ -23,18 +23,18 @@
                         Otel Rezervasyonu
                     </h3>
 
-                    <form action="/Default/BookingHotelList" method="post">
+                    <form action="/Default/BookingHotelList/" method="get">
                         <div class="check-date">
                             <label for="date-in">Giriş:</label>
                             <input type="text" class="date-input" name="arrivalDate">
                             <i class="icon_calendar"></i>
                         </div>
-                    @*     <div class="check-date">
+                        <div class="check-date">
                             <label for="date-out">Çıkış:</label>
                             <input type="text" class="date-input" name="departureDate">
                             <i class="icon_calendar"></i>
-                        </div> *@
-                        @* <div class="select-option">
+                        </div>
+                        <div class="select-option">
                             <label for="guest">Misafirler:</label>
                             <select  name="adultCount">
                                 <option value="1">1 Yetişkin</option>
@@ -53,7 +53,7 @@
                                 <option value="3">3 Oda</option>
                                 <option value="4">4 Oda</option>
                             </select>
-                        </div> *@
+                        </div>
                         <button type="submit">
                             Otel Ara
                         </button>
