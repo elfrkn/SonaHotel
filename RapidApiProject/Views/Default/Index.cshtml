@@ -1,4 +1,4 @@
-﻿@model List<BookingListViewModel.Hotel>
+﻿@model BookingSearchViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UILayout.cshtml";
@@ -22,42 +22,46 @@
                     <h3>
                         Otel Rezervasyonu
                     </h3>
+                    @using (Html.BeginForm("BookingHotelList" , "Default", FormMethod.Post))
+                    {
+                       
 
-                    <form action="/Default/BookingHotelList/" method="get">
-                        <div class="check-date">
-                            <label for="date-in">Giriş:</label>
-                            <input type="text" class="date-input" name="arrivalDate">
-                            <i class="icon_calendar"></i>
-                        </div>
-                        <div class="check-date">
-                            <label for="date-out">Çıkış:</label>
-                            <input type="text" class="date-input" name="departureDate">
-                            <i class="icon_calendar"></i>
-                        </div>
-                        <div class="select-option">
-                            <label for="guest">Misafirler:</label>
-                            <select  name="adultCount">
-                                <option value="1">1 Yetişkin</option>
-                                <option value="2">2 Yetişkin</option>
-                                <option value="3">3 Yetişkin</option>
-                                <option value="4">4 Yetişkin</option>
-                                <option value="5">5 Yetişkin</option>
-                                <option value="6">6 Yetişkin</option>
-                            </select>
-                        </div>
-                        <div class="select-option">
-                            <label for="room">Oda:</label>
-                            <select  name="roomCount">
-                                <option value="1">1 Oda</option>
-                                <option value="2">2 Oda</option>
-                                <option value="3">3 Oda</option>
-                                <option value="4">4 Oda</option>
-                            </select>
-                        </div>
-                        <button type="submit">
-                            Otel Ara
-                        </button>
-                    </form>
+                            <div class="check-date">
+                                <label for="date-in">Giriş:</label>
+                                <input type="text" class="date-input" asp-for="arrivalDate">
+                                <i class="icon_calendar"></i>
+                            </div>
+
+                            <div class="check-date">
+                                <label for="date-out">Çıkış:</label>
+                                <input type="text" class="date-input" asp-for="departureDate">
+                                <i class="icon_calendar"></i>
+                            </div>
+                            <div class="select-option">
+                                <label for="guest">Misafirler:</label>
+                                <select asp-for="adultCount">
+                                    <option value="1">1 Yetişkin</option>
+                                    <option value="2">2 Yetişkin</option>
+                                    <option value="3">3 Yetişkin</option>
+                                    <option value="4">4 Yetişkin</option>
+                                    <option value="5">5 Yetişkin</option>
+                                    <option value="6">6 Yetişkin</option>
+                                </select>
+                            </div>
+                            <div class="select-option">
+                                <label for="room">Oda:</label>
+                                <select asp-for="roomCount">
+                                    <option value="1">1 Oda</option>
+                                    <option value="2">2 Oda</option>
+                                    <option value="3">3 Oda</option>
+                                    <option value="4">4 Oda</option>
+                                </select>
+                            </div>
+                            <button type="submit">
+                                Otel Ara
+                            </button>
+                    }
+                    
                 </div>
             </div>
         </div>

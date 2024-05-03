@@ -1,26 +1,45 @@
-﻿@model List<BookingListViewModel.Hotel>
+﻿@model List< BookingListViewModel.Hotel>
 @{
     ViewData["Title"] = "BookingHotelList";
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 
 
+    <section class="hp-room-section">
+        <div class="container-fluid">
+            <div class="hp-room-items">
+                <div class="row">
+               
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-6">
+                        <div class="hp-room-item set-bg" img src="@item.property.photoUrls[0]">
+                            <div class="hr-text">
+                                <h3>
+                                    @item.property.name
+                                </h3>
+                                <h2>@item.property.reviewCount<span>/@item.property.currency</span></h2>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="r-o">Boyut:</td>
+                                            <td>@item.property.wishlistName </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Kapasite:</td>
+                                            <td>@item.accessibilityLabel</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <a href="#" class="primary-btn">More Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
+    </section>
 
-<table class="table table-bordered">
-    <tr>
 
-        <th>Otel Adi</th>
-        <th>Resim</th>
-        <th>Giriş Tarih</th>
-       
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.property.name</td>
-            <td><img src="@item.property.photoUrls" /></td>
-            <td>@item.property.checkinDate </td>
 
-        </tr>
-    }
-</table>

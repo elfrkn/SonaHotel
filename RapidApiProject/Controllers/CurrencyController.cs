@@ -8,9 +8,9 @@ namespace RapidApiProject.Controllers
 {
     public class CurrencyController : Controller
     {
-        public async Task<IActionResult>  Index()
+        public async Task<IActionResult> Index()
         {
-            
+
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
