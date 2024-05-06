@@ -44,7 +44,13 @@
 
                                 </tbody>
                             </table>
-                            <a href="/Default/GetHotelDetails/@item.property.photoUrls[0].Replace("square60", "square480")/@item.property.name/@item.property.reviewCount/@item.property.currency/@item.property.wishlistName" class="primary-btn">Detaylar >></a>
+                            <form method="post" asp-action="GetHotelDetails">
+                                <input type="hidden" name="hotelID" value="@item.hotel_id" />
+                                <input type="hidden" name="arrivalDate" value="@item.property.checkinDate" />
+                                <input type="hidden" name="departureDate" value="@item.property.checkoutDate" />
+                                <button class="btn primary-btn">Detaylar >></button>
+                            </form>
+
                         </div>
                     </div>
                 </div>

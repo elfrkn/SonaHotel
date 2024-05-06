@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RapidApiProject.Models;
+using System.Net.Http;
 
 
 
@@ -28,7 +29,7 @@ namespace RapidApiProject.Controllers
                 Headers =
     {
         {  "X-RapidAPI-Key",
-                     "f2dad87302msh8d1a2670dfba065p12ca1ajsnd427718e24d8" },
+                     "01e2c3d585msh1afb95d2ac454c2p1bb84djsnc18b9688678f" },
         { "X-RapidAPI-Host",
                      "booking-com15.p.rapidapi.com" },
 
@@ -65,7 +66,7 @@ namespace RapidApiProject.Controllers
                 Headers =
     {
         { "X-RapidAPI-Key",
-                     "f2dad87302msh8d1a2670dfba065p12ca1ajsnd427718e24d8" },
+                     "01e2c3d585msh1afb95d2ac454c2p1bb84djsnc18b9688678f" },
         { "X-RapidAPI-Host",
                      "booking-com15.p.rapidapi.com" },
     },
@@ -75,24 +76,40 @@ namespace RapidApiProject.Controllers
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<BookingListViewModel>(body);
+                TempData["Photo"] = values.data.hotels[0].property.photoUrls[0].Replace("square60", "square480");
                 return View(values.data.hotels.ToList());
 
             }
 
         }
-        public async Task<IActionResult> GetHotelDetails()
+        [HttpPost]
+        public async Task<IActionResult> GetHotelDetails(string hotelID,string arrivalDate,string departureDate)
         {
             
-            return View();
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"https://booking-com15.p.rapidapi.com/api/v1/hotels/getHotelDetails?hotel_id={hotelID}&arrival_date={arrivalDate}&departure_date={departureDate}&languagecode=en-us&currency_code=EUR"),
+                Headers = {
+                  {
+                     "X-RapidAPI-Key",
+                     "01e2c3d585msh1afb95d2ac454c2p1bb84djsnc18b9688678f"
+                  },
+                  {
+                     "X-RapidAPI-Host",
+                     "booking-com15.p.rapidapi.com"
+                  },
+               },
+            };
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                var value = JsonConvert.DeserializeObject<BookingDetailsViewModel>(body);
+                return View(value);
+            }
         }
     }
 }
-
-       
-    
-
-
-
-//{ "X-RapidAPI-Key", "26e74b2436mshecef036cc415a73p148c7cjsncf928ce9fba3" },
-//        { "X-RapidAPI-Host", "booking-com15.p.rapidapi.com" },
 
